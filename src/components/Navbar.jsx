@@ -1,0 +1,22 @@
+import React from "react";
+
+const Navbar = () => {
+	return (
+		<nav className="navbar navbar-light border rounded rounded-3 px-2">
+			<div className="container-fluid">
+				<a className="navbar-brand fs-4 fw-bold">Spotec</a>
+				<form className="d-flex input-group w-auto">
+					<input
+						type="search"
+						className="form-control rounded"
+						placeholder="Search"
+						aria-label="Search"
+						aria-describedby="search-addon"
+					/>
+				</form>
+			</div>
+		</nav>
+	);
+};
+
+export default Navbar;
