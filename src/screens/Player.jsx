@@ -51,7 +51,6 @@ const Player = ({ currentSong }) => {
 
 			<div className="card-body">
 				<h5 className="card-title">{currentSong.title}</h5>
-				<p className="card-text">artist name</p>
 				<div>
 					<div class="range">
 						<input
