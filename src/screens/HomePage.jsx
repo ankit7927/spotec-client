@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import React, { useEffect } from "react";
 import SongListItem from "../components/SongListItem";
 import Player from "./Player";
 import { getSongs } from "../state/song/songReducer";
@@ -15,9 +14,6 @@ const HomePage = () => {
 
 	return (
 		<div>
-			<div className="py-4">
-				<Navbar />
-			</div>
 			<div className="row g-4">
 				<div
 					className={

@@ -12,19 +12,22 @@ const SongListItem = ({ songItem, current }) => {
 	return (
 		<div class={current == null ? "col-lg-3" : "col-md-4"}>
 			<div class="d-flex justify-content-between align-items-center">
-				<div class="d-flex align-items-center" onClick={onPlayClick}>
+				<div
+					class="d-flex align-items-center"
+					style={{ cursor: "pointer" }}
+					onClick={onPlayClick}
+				>
 					<img
 						src={songItem.thumbnail}
 						alt={songItem.title}
 						style={{ width: 60, height: 60 }}
-						className="rounded-3"
+						className="rounded-6"
 					/>
 					<div class="ms-3">
-						<p class="fw-bold mb-1">{songItem.title}</p>
+						<p class="fw-bold mb-0">{songItem.title}</p>
 						<p class="text-muted mb-0">{songItem.album}</p>
 					</div>
 				</div>
-
 				<span class="btn btn-link">
 					<i class="fas fa-ellipsis-vertical ms-2"></i>
 				</span>
