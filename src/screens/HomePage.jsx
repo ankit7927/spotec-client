@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import SongListItem from "../components/SongListItem";
 import Player from "./Player";
-import { getSongs } from "../state/song/songReducer";
+import { getSongs, paginate } from "../state/song/songReducer";
 import { useDispatch, useSelector } from "react-redux";
 
 const HomePage = () => {
@@ -9,8 +9,17 @@ const HomePage = () => {
 	const state = useSelector((state) => state.song);
 	useEffect(() => {
 		dispatch(getSongs());
-		console.log(state.songs.rows);
 	}, []);
+
+	const onNextPage = () => {
+		const page = state.page;
+		dispatch(paginate(page + 1));
+	};
+
+	const onPrePage = () => {
+		const page = state.page;
+		dispatch(paginate(page - 1));
+	};
 
 	return (
 		<div>
@@ -33,6 +42,20 @@ const HomePage = () => {
 										/>
 									);
 								})}
+							</div>
+							<div className="card-footer">
+								<button
+									className="btn btn-secondary me-2"
+									onClick={onPrePage}
+								>
+									Previous
+								</button>
+								<button
+									className="btn btn-secondary"
+									onClick={onNextPage}
+								>
+									Next
+								</button>
 							</div>
 						</div>
 					)}

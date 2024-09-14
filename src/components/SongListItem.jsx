@@ -24,13 +24,10 @@ const SongListItem = ({ songItem, current }) => {
 						className="rounded-6"
 					/>
 					<div class="ms-3">
-						<p class="fw-bold mb-0">{songItem.title}</p>
-						<p class="text-muted mb-0">{songItem.album}</p>
+						<p class="fw-bold mb-0 ">{songItem.title.substring(0, 18)}</p>
+						<p class="text-muted mb-0">{songItem.album.substring(0, 14)}</p>
 					</div>
 				</div>
-				<span class="btn btn-link">
-					<i class="fas fa-ellipsis-vertical ms-2"></i>
-				</span>
 			</div>
 		</div>
 	);
