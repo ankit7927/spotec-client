@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import SongListItem from "../components/SongListItem";
 import Player from "./Player";
-import { paginate } from "../state/song/songReducer";
+import { paginate, search } from "../state/song/songReducer";
 import { useDispatch, useSelector } from "react-redux";
 
 const HomePage = () => {
@@ -13,12 +13,18 @@ const HomePage = () => {
 
 	const onNextPage = () => {
 		const page = state.page;
-		dispatch(paginate(page + 1));
+		const query = state.searchQuery;
+
+		if (query != "") dispatch(search({ query: query, page: page + 1 }));
+		else dispatch(paginate(page + 1));
 	};
 
 	const onPrePage = () => {
 		const page = state.page;
-		dispatch(paginate(page - 1));
+		const query = state.searchQuery;
+
+		if (query != "") dispatch(search({ query: query, page: page - 1 }));
+		else dispatch(paginate(page - 1));
 	};
 
 	return (

@@ -5,4 +5,8 @@ const paginate = createAsyncThunk("song/paginate", async (data) => {
 	return await Axios.get(`track?page=${data}`);
 });
 
-export { paginate };
+const search = createAsyncThunk("song/search", async (data) => {
+	return await Axios.get(`search?query=${data.query}&page=${data.page}`);
+});
+
+export { paginate, search };
