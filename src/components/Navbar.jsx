@@ -17,7 +17,7 @@ const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light rounded rounded-6 px-2">
 			<div className="container">
-				<a className="navbar-brand fs-4 fw-bold">Spotec</a>
+				<a className="navbar-brand fs-4 fw-bold">SPOTEC</a>
 				<div className="d-flex input-group w-auto">
 					<input
 						onChange={onSearchQueryChange}
