@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getSongs, paginate } from "./songReducer";
+import { paginate } from "./songReducer";
 
 const initialState = {
 	status: "idle",
@@ -26,21 +26,6 @@ const songSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(getSongs.pending, (state) => {
-				state.status = "loading";
-			})
-			.addCase(getSongs.rejected, (state, action) => {
-				state.status = "idle";
-				state.error = action.error.message;
-			})
-			.addCase(getSongs.fulfilled, (state, action) => {
-				state.status = "idle";
-				const data = action.payload.data;
-				state.rows = data.rows;
-				state.limit = data.limit;
-				state.offset = data.offset;
-				state.page = data.page;
-			})
 			.addCase(paginate.pending, (state) => {
 				state.status = "loading";
 			})

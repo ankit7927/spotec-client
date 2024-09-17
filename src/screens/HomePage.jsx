@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import SongListItem from "../components/SongListItem";
 import Player from "./Player";
-import { getSongs, paginate } from "../state/song/songReducer";
+import { paginate } from "../state/song/songReducer";
 import { useDispatch, useSelector } from "react-redux";
 
 const HomePage = () => {
 	const dispatch = useDispatch();
 	const state = useSelector((state) => state.song);
 	useEffect(() => {
-		dispatch(getSongs());
+		dispatch(paginate(0));
 	}, []);
 
 	const onNextPage = () => {

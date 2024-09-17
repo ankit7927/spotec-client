@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { clearCurrentSong } from "../state/song/songSlice";
-import TimeLabel from "../components/TimeLabel";
+import configs from "../configs/configs";
 
 const Player = ({ currentSong }) => {
 	const dispatch = useDispatch();
@@ -72,7 +72,7 @@ const Player = ({ currentSong }) => {
 								setPlaying(false);
 							}}
 							ref={audioRef}
-							src={currentSong.audioUrl}
+							src={configs.apiBaseUrl + `listen/${currentSong.id}`}
 						></audio>
 					</div>
 					<div className="mt-2">
