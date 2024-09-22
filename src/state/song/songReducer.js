@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import Axios from "../../configs/axios";
 
-const paginate = createAsyncThunk("song/paginate", async (data) => {
-	return await Axios.get(`track/track?page=${data}`);
+const homeFeed = createAsyncThunk("song/homeFeed", async () => {
+	return await Axios.get(`home-feed`);
 });
 
 const search = createAsyncThunk("song/search", async (data) => {
-	return await Axios.get(`search?query=${data.query}&page=${data.page}`);
+	return await Axios.get(`search?query=${data}`);
 });
 
-export { paginate, search };
+export { homeFeed, search };

@@ -1,75 +1,29 @@
 import React, { useEffect } from "react";
-import SongListItem from "../components/SongListItem";
 import Player from "./Player";
-import { paginate, search } from "../state/song/songReducer";
+import { homeFeed } from "../state/song/songReducer";
 import { useDispatch, useSelector } from "react-redux";
 import ListCard from "./ListCard";
+import { Outlet } from "react-router-dom";
 
 const HomePage = () => {
 	const dispatch = useDispatch();
 	const state = useSelector((state) => state.song);
 	useEffect(() => {
-		dispatch(paginate(0));
+		dispatch(homeFeed(0));
 	}, []);
-
-	const onNextPage = () => {
-		const page = state.page;
-		const query = state.searchQuery;
-
-		if (query != "") dispatch(search({ query: query, page: page + 1 }));
-		else dispatch(paginate(page + 1));
-	};
-
-	const onPrePage = () => {
-		const page = state.page;
-		const query = state.searchQuery;
-
-		if (query != "") dispatch(search({ query: query, page: page - 1 }));
-		else dispatch(paginate(page - 1));
-	};
 
 	return (
 		<div>
 			<div className="row g-3">
 				<div className="col-md-3">
-					<ListCard/>
+					<ListCard />
 				</div>
 				<div
 					className={
 						state.currentSong == null ? "col-md-9" : "col-md-6"
 					}
 				>
-					{state.state == "loading" ? (
-						<h4>Loading</h4>
-					) : (
-						<div className="card">
-							<div className="card-body row g-4">
-								{state.rows.map((ele) => {
-									return (
-										<SongListItem
-											key={ele.id}
-											songItem={ele}
-											current={state.currentSong}
-										/>
-									);
-								})}
-							</div>
-							<div className="card-footer">
-								<button
-									className="btn btn-secondary me-2"
-									onClick={onPrePage}
-								>
-									Previous
-								</button>
-								<button
-									className="btn btn-secondary"
-									onClick={onNextPage}
-								>
-									Next
-								</button>
-							</div>
-						</div>
-					)}
+					<Outlet />
 				</div>
 
 				{state.currentSong == null ? (

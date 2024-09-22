@@ -1,15 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { paginate, search } from "./songReducer";
+import { homeFeed, search } from "./songReducer";
 
 const initialState = {
 	status: "idle",
 	error: null,
 	currentSong: null,
-	rows: [],
+	tracks: [],
 	lists: [],
-	offset: null,
-	page: null,
-	limit: null,
 	searchQuery: "",
 };
 
@@ -32,23 +29,20 @@ const songSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(paginate.pending, (state) => {
+			.addCase(homeFeed.pending, (state) => {
 				state.status = "loading";
 			})
-			.addCase(paginate.rejected, (state, action) => {
-				state.status = "idle";
+			.addCase(homeFeed.rejected, (state, action) => {
 				state.error = action.error.message;
-			})
-			.addCase(paginate.fulfilled, (state, action) => {
 				state.status = "idle";
-				const data = action.payload.data;
-				state.rows = data.rows;
-				state.limit = data.limit;
-				state.offset = data.offset;
-				state.page = data.page;
-				state.lists = data.lists
-				
 			})
+			.addCase(homeFeed.fulfilled, (state, action) => {
+				const data = action.payload.data;
+				state.tracks = data.tracks;
+				state.lists = data.lists;
+				state.status = "idle";
+			});
+		builder
 			.addCase(search.pending, (state) => {
 				state.status = "loading";
 			})
@@ -57,15 +51,14 @@ const songSlice = createSlice({
 				state.error = action.error.message;
 			})
 			.addCase(search.fulfilled, (state, action) => {
-				state.status = "idle";
 				const data = action.payload.data;
-				state.rows = data.rows;
-				state.limit = data.limit;
-				state.offset = data.offset;
-				state.page = data.page;
+				state.tracks = data.tracks;
+				state.lists = data.lists;
+				state.status = "idle";
 			});
 	},
 });
 
-export const { changeSong, clearCurrentSong, onQueryChange } = songSlice.actions;
+export const { changeSong, clearCurrentSong, onQueryChange } =
+	songSlice.actions;
 export default songSlice.reducer;
