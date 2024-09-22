@@ -6,6 +6,7 @@ const initialState = {
 	error: null,
 	currentSong: null,
 	rows: [],
+	lists: [],
 	offset: null,
 	page: null,
 	limit: null,
@@ -45,6 +46,8 @@ const songSlice = createSlice({
 				state.limit = data.limit;
 				state.offset = data.offset;
 				state.page = data.page;
+				state.lists = data.lists
+				
 			})
 			.addCase(search.pending, (state) => {
 				state.status = "loading";

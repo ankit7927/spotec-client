@@ -16,7 +16,7 @@ const Navbar = () => {
 
 	return (
 		<nav className="navbar navbar-light rounded rounded-6 px-2">
-			<div className="container">
+			<div className="container-fluid">
 				<a className="navbar-brand fs-4 fw-bold">SPOTEC</a>
 				<div className="d-flex input-group w-auto">
 					<input

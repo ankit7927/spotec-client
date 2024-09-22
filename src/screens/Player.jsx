@@ -52,10 +52,10 @@ const Player = ({ currentSong }) => {
 			<div className="card-body">
 				<h5 className="card-title">{currentSong.title}</h5>
 				<div>
-					<div class="range">
+					<div className="range">
 						<input
 							id="progressbar"
-							class="form-range"
+							className="form-range"
 							type="range"
 							name=""
 							min={0}
@@ -77,29 +77,29 @@ const Player = ({ currentSong }) => {
 					</div>
 					<div className="mt-2">
 						<button
-							class="btn btn-primary m-0"
+							className="btn btn-primary m-0"
 							data-ripple-color="primary"
 							data-mdb-ripple-init
 							onClick={togglePlayback}
 						>
 							{playing ? (
 								<>
-									<i class="fas fa-pause me-2" /> Pause
+									<i className="fas fa-pause me-2" /> Pause
 								</>
 							) : (
 								<>
-									<i class="fas fa-play me-2" /> Play
+									<i className="fas fa-play me-2" /> Play
 								</>
 							)}
 						</button>
 
 						<button
-							class="btn btn-secondary ms-2 m-0"
+							className="btn btn-secondary ms-2 m-0"
 							data-ripple-color="primary"
 							data-mdb-ripple-init
 							onClick={clearCurrent}
 						>
-							<i class="fas fa-stop"></i>
+							<i className="fas fa-stop"></i>
 						</button>
 					</div>
 				</div>

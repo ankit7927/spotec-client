@@ -3,6 +3,7 @@ import SongListItem from "../components/SongListItem";
 import Player from "./Player";
 import { paginate, search } from "../state/song/songReducer";
 import { useDispatch, useSelector } from "react-redux";
+import ListCard from "./ListCard";
 
 const HomePage = () => {
 	const dispatch = useDispatch();
@@ -29,20 +30,24 @@ const HomePage = () => {
 
 	return (
 		<div>
-			<div className="row g-4">
+			<div className="row g-3">
+				<div className="col-md-3">
+					<ListCard/>
+				</div>
 				<div
 					className={
-						state.currentSong == null ? "col-md-12" : "col-md-9"
+						state.currentSong == null ? "col-md-9" : "col-md-6"
 					}
 				>
 					{state.state == "loading" ? (
 						<h4>Loading</h4>
 					) : (
 						<div className="card">
-							<div className="card-body row g-3">
+							<div className="card-body row g-4">
 								{state.rows.map((ele) => {
 									return (
 										<SongListItem
+											key={ele.id}
 											songItem={ele}
 											current={state.currentSong}
 										/>

@@ -11,8 +11,8 @@ function App() {
 	]);
 
 	return (
-		<div className="container">
-			<div className="py-4">
+		<div className="container-fluid">
+			<div className="py-3">
 				<Navbar />
 			</div>
 			<RouterProvider router={router} />
