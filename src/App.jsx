@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Register from "./screens/Register";
 import Login from "./screens/Login";
 import HomeFeed from "./screens/HomeFeed";
+import PlayListPage from "./screens/PlayListPage";
 
 function App() {
 	const router = createBrowserRouter([
@@ -14,6 +15,10 @@ function App() {
 				{
 					path: "",
 					element: <HomeFeed />,
+				},
+				{
+					path: "/list/:listId",
+					element: <PlayListPage />,
 				},
 			],
 		},

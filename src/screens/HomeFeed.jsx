@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { homeFeed } from "../state/song/songReducer";
 import PlayListItem from "../components/PlayListItem";
-import SongListItem from "../components/SongListItem"
+import SongListItem from "../components/SongListItem";
 
 const HomeFeed = () => {
 	const dispatch = useDispatch();
@@ -27,15 +27,16 @@ const HomeFeed = () => {
 
 			<div className="card">
 				<div className="card-body row g-4">
-					{state.tracks.map((ele) => {
-						return (
-							<SongListItem
-								key={ele.id}
-								songItem={ele}
-								current={state.currentSong}
-							/>
-						);
-					})}
+					<div className="row row-cols-2 row-cols-md-3 g-3">
+						{state.tracks.map((ele) => {
+							return (
+								<SongListItem
+									key={ele.id}
+									songItem={ele}
+								/>
+							);
+						})}
+					</div>
 				</div>
 			</div>
 		</>

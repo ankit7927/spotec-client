@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { changeSong } from "../state/song/songSlice";
 
-const SongListItem = ({ songItem, current }) => {
+const SongListItem = ({ songItem }) => {
 	const dispatch = useDispatch();
 
 	const onPlayClick = () => {
@@ -10,7 +10,7 @@ const SongListItem = ({ songItem, current }) => {
 	};
 
 	return (
-		<div className={current == null ? "col-lg-4" : "col-md-6"}>
+		<div className="col" id={songItem.id}>
 			<div className="d-flex justify-content-between align-items-center">
 				<div
 					className="d-flex align-items-center"
