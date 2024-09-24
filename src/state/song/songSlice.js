@@ -8,6 +8,8 @@ const initialState = {
 	tracks: [],
 	lists: [],
 	searchQuery: "",
+	currentTrackIndex: null,
+	currentPlaylist: null,
 };
 
 const songSlice = createSlice({
@@ -25,6 +27,29 @@ const songSlice = createSlice({
 
 		onQueryChange: (state, action) => {
 			state.searchQuery = action.payload;
+		},
+
+		onPlayListStart: (state, action) => {
+			state.currentPlaylist = action.payload;
+			const track =
+				state.currentPlaylist.tracks[
+					state.currentTrackIndex ? state.currentTrackIndex : 0
+				];
+
+			state.currentTrackIndex = 0;
+			state.currentSong = null;
+			state.currentSong = track;
+		},
+
+		onPlayListStop: (state, action) => {
+			state.currentPlaylist = null;
+			state.currentSong = null;
+			state.currentTrackIndex = 0;
+		},
+
+		onPlaylistNextTrack: (state) => {
+			state.currentTrackIndex += 1;
+			state.currentSong = state.currentPlaylist[state.currentTrackIndex];
 		},
 	},
 	extraReducers: (builder) => {
@@ -59,6 +84,12 @@ const songSlice = createSlice({
 	},
 });
 
-export const { changeSong, clearCurrentSong, onQueryChange } =
-	songSlice.actions;
+export const {
+	changeSong,
+	clearCurrentSong,
+	onQueryChange,
+	onPlayListStart,
+	onPlayListStop,
+	onPlaylistNextTrack,
+} = songSlice.actions;
 export default songSlice.reducer;

@@ -72,7 +72,7 @@ const Player = ({ currentSong }) => {
 								setPlaying(false);
 							}}
 							ref={audioRef}
-							src={configs.apiBaseUrl + `listen/${currentSong.id}`}
+							src={configs.apiBaseUrl + `track/listen/${currentSong.id}`}
 						></audio>
 					</div>
 					<div className="mt-2">

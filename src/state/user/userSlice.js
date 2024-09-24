@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser, loginUser, refreshToken, registerUser } from "./userReduder";
+import {
+	createPlaylist,
+	getUser,
+	loginUser,
+	refreshToken,
+	registerUser,
+} from "./userReduder";
 
 const initialState = {
 	status: "idle",
@@ -38,10 +44,13 @@ const userSlice = createSlice({
 			})
 			.addCase(loginUser.fulfilled, (state, action) => {
 				const response = action.payload.data;
+				console.log(response);
+
 				localStorage.setItem("access_token", response.access);
 				localStorage.setItem("refresh_token", response.refresh);
 				state.id = response.id;
 				state.loggedIn = true;
+				state.status = "idle";
 			});
 
 		builder
@@ -49,7 +58,7 @@ const userSlice = createSlice({
 				state.status = "loading";
 			})
 			.addCase(registerUser.rejected, (state, action) => {
-				state.error = action.payload.error;
+				state.error = action.error;
 				state.status = "idle";
 			})
 			.addCase(registerUser.fulfilled, (state, action) => {
@@ -57,20 +66,20 @@ const userSlice = createSlice({
 			});
 
 		builder
-			.addCase(getUser.pending, (state, action) => {
-				state.status = "loading";
-			})
-			.addCase(getUser.rejected, (state, action) => {
-				state.error = action.payload.error;
-				state.status = "idle";
-			})
+			// .addCase(getUser.pending, (state, action) => {
+			// 	state.status = "loading";
+			// })
+			// .addCase(getUser.rejected, (state, action) => {
+			// 	state.error = action.error;
+			// 	state.status = "idle";
+			// })
 			.addCase(getUser.fulfilled, (state, action) => {
 				const response = action.payload.data;
 				state.email = response.email;
 				state.name = response.name;
 				state.tracks = response.tracks;
 				state.lists = response.lists;
-				state.status = "idle";
+				console.log("got res for getuser");
 			});
 
 		builder
@@ -78,12 +87,26 @@ const userSlice = createSlice({
 				state.status = "loading";
 			})
 			.addCase(refreshToken.rejected, (state, action) => {
-				state.error = action.payload.error;
+				state.error = action.error;
 				state.status = "idle";
 			})
 			.addCase(refreshToken.fulfilled, (state, action) => {
 				const response = action.payload.data;
 				localStorage.setItem("access_token", response.access);
+				state.status = "idle";
+			});
+
+		builder
+			.addCase(createPlaylist.pending, (state, action) => {
+				state.status = "loading";
+			})
+			.addCase(createPlaylist.rejected, (state, action) => {
+				state.error = action.error;
+				state.status = "idle";
+			})
+			.addCase(createPlaylist.fulfilled, (state, 	action) => {
+				const response = action.payload.data;
+				state.lists.push(response);
 				state.status = "idle";
 			});
 	},

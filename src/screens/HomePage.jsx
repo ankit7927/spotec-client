@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Player from "./Player";
 import { homeFeed } from "../state/song/songReducer";
 import { useDispatch, useSelector } from "react-redux";
-import ListCard from "./ListCard";
+import LeftSideBar from "./LeftSideBar";
 import { Outlet } from "react-router-dom";
 
 const HomePage = () => {
@@ -16,7 +16,7 @@ const HomePage = () => {
 		<div>
 			<div className="row g-3">
 				<div className="col-md-3">
-					<ListCard />
+					<LeftSideBar />
 				</div>
 				<div
 					className={

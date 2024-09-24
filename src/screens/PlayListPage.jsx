@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Axios from "../configs/axios";
 import SongListItem from "../components/SongListItem";
+import { useDispatch } from "react-redux";
+import { onPlayListStart } from "../state/song/songSlice";
 
 const PlayListPage = () => {
+	const dispatch = useDispatch();
 	const params = useParams();
 	const listId = params.listId;
 
@@ -28,7 +31,11 @@ const PlayListPage = () => {
 				setError(error);
 				setLoading(false);
 			});
-	}, []);
+	}, [listId]);
+
+	const playLicked = () => {
+		dispatch(onPlayListStart(list));
+	};
 
 	return (
 		<div className="card">
@@ -57,6 +64,7 @@ const PlayListPage = () => {
 								<h1>{list.name}</h1>
 							</div>
 							<button
+								onClick={playLicked}
 								type="button"
 								className="btn btn-primary btn-lg btn-floating ms-2"
 							>

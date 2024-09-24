@@ -5,6 +5,8 @@ import Register from "./screens/Register";
 import Login from "./screens/Login";
 import HomeFeed from "./screens/HomeFeed";
 import PlayListPage from "./screens/PlayListPage";
+import PLForm from "./screens/PLForm";
+import LikedList from "./screens/LikedList";
 
 function App() {
 	const router = createBrowserRouter([
@@ -19,6 +21,14 @@ function App() {
 				{
 					path: "/list/:listId",
 					element: <PlayListPage />,
+				},
+				{
+					path: "/liked",
+					element: <LikedList />,
+				},
+				{
+					path: "/new-list",
+					element: <PLForm />,
 				},
 			],
 		},

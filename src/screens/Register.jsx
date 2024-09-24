@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { registerUser } from "../state/user/userReduder";
 
 const Register = () => {
 	const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const Register = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch(loginUser({ email, password }));
+		dispatch(registerUser({ name, email, password }));
 		navigate("/login");
 	};
 
@@ -43,7 +44,7 @@ const Register = () => {
 							<input
 								value={email}
 								onChange={(e) => {
-									setEame(e.target.value);
+									setEmail(e.target.value);
 								}}
 								type="email"
 								id="email"
@@ -67,7 +68,9 @@ const Register = () => {
 
 						{state.status == "loading" ? (
 							<div className="spinner-border" role="status">
-								<span className="visually-hidden">Loading...</span>
+								<span className="visually-hidden">
+									Loading...
+								</span>
 							</div>
 						) : (
 							<button

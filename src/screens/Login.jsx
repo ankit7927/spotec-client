@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "../state/user/userReduder";
+import { getUser, loginUser } from "../state/user/userReduder";
 
 const Login = () => {
 	const dispatch = useDispatch();
@@ -13,7 +13,10 @@ const Login = () => {
 	const [password, setPassword] = useState("");
 
 	useEffect(() => {
-		if (state.loggedIn) navigate("/");
+		if (state.loggedIn) {
+			dispatch(getUser())
+			navigate("/");
+		}
 	}, [state.loggedIn]);
 
 	const handleSubmit = (e) => {
@@ -24,14 +27,6 @@ const Login = () => {
 	return (
 		<div className="container py-5 col-sm-4">
 			<div className="card">
-				{state.error ? (
-					<div className="alert alert-warning" role="alert">
-						{state.error.message}
-					</div>
-				) : (
-					<></>
-				)}
-
 				<div className="card-body">
 					<div className="card-title">
 						<h2 className="py-3">Login Here</h2>
